@@ -1,0 +1,10 @@
+```yaml
+# Example mapping for soccer-style events - modify to match your extracted labels and IDs.
+# Use integer keys for class ids that your training scripts use.
+classes:
+  0: pass
+  1: shot
+  2: tackle
+  3: foul
+  4: throw_in
+```
