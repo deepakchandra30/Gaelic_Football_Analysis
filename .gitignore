@@ -1,8 +1,7 @@
 __pycache__/
 .venv/
 outputs/
-data/clips/
-data/tracklets/
+data/
 *.pth
 *.pt
 *.mp4

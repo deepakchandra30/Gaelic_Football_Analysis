@@ -1,0 +1,7 @@
+classes:
+  0: pass
+  1: shot
+  2: tackle
+  3: foul
+  4: throw_in
+  5: idle
