@@ -1,1 +1,9 @@
-Timeline.pdf
+__pycache__/
+.venv/
+outputs/
+data/clips/
+data/tracklets/
+*.pth
+*.pt
+*.mp4
+*.avi
