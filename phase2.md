@@ -86,31 +86,22 @@
 * **LLM-generated reports grounded in model outputs** (no hallucination from video)
 * **Dashboard + review workflow** (product-like end-to-end system)  
 Most papers stop at reporting mAP—this delivers an **analytics platform**.
-
 ---
 
-## Dashboard features
-### 1) Match-level event analytics (core)
-* Run inference on full match/halves → produce event timeline (**timestamp, label, confidence**)
-* Show **counts per half/match**, filters by action, and **review low-confidence events**
+**Title:** *"Two-Stage Action Spotting with LLM-Grounded Interactive Match Analytics Dashboard"*
 
-### 2) Player-wise analysis (tracking-based)
-* Player detection + tracking (IDs like Track-1, Track-2)
-* Per player/track: **time on screen, heatmap, involvement near events**
+### Contribution 1: Two-Stage Spotting Pipeline
+- Stage 1: Lightweight proposal network (MobileNet/EfficientNet at 2–5 fps)
+- Stage 2: Temporal classifier (TSM/SlowFast) only on candidates
+- **Must show** speedup vs dense sliding window **without** significant mAP drop
 
-### 3) Action-wise deep dive
-* Per action class: **top clips**, **precision/recall**, confusion matrix, and **time distribution**
-* “Similar events” search (retrieve visually similar clips)
+### Contribution 2: LLM-Grounded Dashboard (not just a report)
+- Structured CV outputs → LLM → interactive Streamlit/Gradio dashboard
+- Frame it as: *"grounded multimodal analytics interface"* — the dashboard IS the contribution, not just a PDF summary
+- **Must formally evaluate**: human study (coaches/analysts rate usefulness) + automated metrics (ROUGE/BERTScore of generated summaries vs real match reports)
 
-### 4) LLM-assisted match report (grounded)
-* LLM reads only **events JSON + player stats JSON**
-* Outputs: match summary, key moments, discipline/set-piece summary, turning points **with timestamps**
+### Contribution 3: End-to-End System Design
+- Full pipeline: video → spotting → tracking → structured JSON → LLM → interactive dashboard
+- This "systems" contribution is valid for IEEE applied/multimedia conferences
 
-### 5) Complex dashboard features
-* Video player + clickable timeline (jump to timestamp/clip)
-* Rich tables (sort/filter), charts (counts/trends), player pages
-* Export: **CSV/JSON/PDF**
-* Human review workflow (approve/reject/edit events)
-
-### 6) Uniqueness (why it’s not “already done”)
-* End-to-end system: **temporal action spotting → tracking analytics → structured DB/JSON → interactive dashboard → LLM grounded reporting**
+---
