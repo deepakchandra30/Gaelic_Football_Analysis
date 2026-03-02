@@ -1,3 +1,10 @@
+## Data-wise justification (use this in your report)
+
+* SoccerNet provides full-length match videos plus timestamped event annotations, which is exactly what’s required to train and evaluate a temporal action model and to generate match timelines and analytics.
+* Unlike RTÉ/GAA sources (restricted/no API/no reuse guarantees), SoccerNet is a research dataset with consistent structure, making your Phase 2 pipeline reproducible, testable, and completable.
+
+
+
 ## Final Year Project: Soccer Match Video Analytics + LLM Match Review Dashboard
 
 ### Best-quality action understanding (temporal model, not single-frame)
