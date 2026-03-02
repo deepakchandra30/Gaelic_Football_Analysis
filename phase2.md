@@ -64,20 +64,6 @@
 
 ---
 
-## 2 stage inference (optional — speed focused, if you later want it)
-### A) Stage 1: cheap proposal generation (fast)
-* Sample video at low FPS (e.g., **2–5 fps**)
-* Use a lightweight model (e.g., **MobileNetV3 / EfficientNet-Lite**) or precomputed features
-* Output **candidate timestamps** where something likely happens
-
-### B) Stage 2: accurate classification (only on candidates)
-* For each candidate timestamp, run a stronger model on a short window (e.g., **2–6 seconds**):
-  * **TSM (Temporal Shift Module)** (fast + strong)
-  * or a **small Video Transformer** for higher accuracy  
-* Result: far fewer clips processed than sliding window → much faster end-to-end
-
----
-
 ## What’s different from others (uniqueness)
 * **Quality-first temporal modeling** (not single-frame classification)
 * **Full-match timeline spotting** with structured outputs (`match_events.json`)
@@ -103,5 +89,32 @@ Most papers stop at reporting mAP—this delivers an **analytics platform**.
 ### Contribution 3: End-to-End System Design
 - Full pipeline: video → spotting → tracking → structured JSON → LLM → interactive dashboard
 - This "systems" contribution is valid for IEEE applied/multimedia conferences
+
+---
+
+---
+
+
+## 5-Week Plan
+
+### Week 1 — Full Data + Temporal Model
+- Download **full SoccerNet-v2** (~500 games), replace your 2-game setup
+- Train **TSM-ResNet50 or SlowFast** on multi-frame clips, evaluate with **mAP@{1,2,5}s**
+
+### Week 2 — Two-Stage Pipeline + Baselines
+- Build Stage 1 (EfficientNet-Lite at 2–5 fps → candidate timestamps) + Stage 2 (temporal classifier on candidates only)
+- Run **NetVLAD++, CALF baselines** + **ablation table** (Stage 1 only / Stage 2 only / combined / dense) + log **FPS per stage**
+
+### Week 3 — Player Tracking + Dashboard
+- Add **YOLOv8 + ByteTrack** → `player_stats.json` (heatmaps, event involvement)
+- Build **Streamlit dashboard**: event timeline, player heatmaps, action filters, export (CSV/JSON/PDF)
+
+### Week 4 — LLM Integration + Evaluation
+- Wire **LLM** into dashboard (reads `match_events.json` + `player_stats.json` → interactive match summary, key moments, turning points)
+- Run **ROUGE/BERTScore** on LLM summaries + **user study** (5–10 people, Likert scale rating on dashboard usefulness)
+
+### Week 5 — Paper Writing
+- Write IEEE 2-column paper: pipeline diagram, mAP table, ablation table, latency table, dashboard screenshots, user study results
+- Clean repo for reproducibility + final README
 
 ---
